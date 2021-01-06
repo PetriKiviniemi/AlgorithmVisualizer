@@ -191,22 +191,22 @@ export class Graph{
             this.addEdge([node1, node2])
         }
         //Diagonials
-        if(x-1 >= 0 && y+1 < this.graph.length && this.graph[y+1][x-1].nodeType != 3)
+        if(x-1 >= 0 && y+1 < this.graph.length && this.graph[y+1][x-1][1].nodeType != 3)
         {
             node2 = [x-1, y+1]
             this.addEdge([node1, node2])
         }
-        if(x-1 >= 0 && y-1 >= 0 && this.graph[y-1][x-1].nodeType != 3)
+        if(x-1 >= 0 && y-1 >= 0 && this.graph[y-1][x-1][1].nodeType != 3)
         {
             node2 = [x-1, y-1]
             this.addEdge([node1, node2])
         }
-        if(x+1 < this.graph[0].length && y-1 >= 0 && this.graph[y-1][x+1].nodeType != 3)
+        if(x+1 < this.graph[0].length && y-1 >= 0 && this.graph[y-1][x+1][1].nodeType != 3)
         {
             node2 = [x+1, y-1]
             this.addEdge([node1, node2])
         }
-        if(x+1 < this.graph[0].length && y+1 < this.graph.length && this.graph[y+1][x+1].nodeType != 3)
+        if(x+1 < this.graph[0].length && y+1 < this.graph.length && this.graph[y+1][x+1][1].nodeType != 3)
         {
             node2 = [x+1, y+1]
             this.addEdge([node1, node2])
