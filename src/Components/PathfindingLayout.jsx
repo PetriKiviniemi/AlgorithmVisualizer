@@ -420,7 +420,6 @@ class PathfindingLayout extends React.Component{
                         <select name="algorithmMode" id="algorithm_mode" className="selector-dropdown" onChange={this.handleAlgorithmModeChange}>
                             <option value="Dijkstra">Dijkstra</option>
                             <option value="Astar">A*</option>
-                            <option value="BFS">Breadth-first-search</option>
                         </select>
                     </div>
                     {/* Checkbox container for displaying weights, not ready for use yet */}
