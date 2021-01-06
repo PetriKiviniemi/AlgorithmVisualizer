@@ -1,0 +1,82 @@
+.grid-container{
+    display: table;
+    justify-content: center;
+    //border-style: solid;
+    //border-color: #a7a7a7;
+    border-width: 1px;
+    margin-top: 5.5em;
+    margin-left: 0.6em;
+    
+
+    .grid-row{
+        display: flex;
+        //flex-direction: row is better, won't overflow though
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 1.5em;
+        
+    }
+    .grid-item{
+        padding: 5px;
+        border-style: groove;
+        border-color: rgba(180, 180, 180, 0.4);
+        border-width: 1px;
+        width: 0.9em;
+        height: 0.9em;
+    }
+
+    @keyframes grid-item-mount{
+        0% {
+            transform:translate(10px, -10px)
+        }
+        100% {
+            transform:translate(0, 0)
+        }
+    }
+
+    .grid-item-start{
+        @extend .grid-item;
+        background-color: green;
+        animation: 0.3s centerFill;
+    }
+
+    .grid-item-end{
+        @extend .grid-item;
+        background-color: red;
+        animation: 0.3s centerFill;
+    }
+
+    .grid-item-obstacle{
+        @extend .grid-item;
+        background-color: black;
+        animation: 0.3s centerFill;
+    }
+
+    .grid-item-visited{
+        @extend .grid-item;
+        background-color: rgb(62, 123, 255);
+        animation: 0.5s centerFill;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes centerFill {
+        0% {
+            transform: scale(0);
+            }
+            100% {
+            transform: scale(1);
+            }
+    }
+
+    .grid-item-shortestPath{
+        @extend .grid-item;
+        background-color: rgb(255, 187, 0);
+        //transition: color .3s;
+        animation: 0.5s centerFill;
+        animation-fill-mode: forwards;
+    }
+
+    .grid-item-path{
+        @extend .grid-item;
+    }
+}
