@@ -41,14 +41,21 @@ class PathfindingLayout extends React.Component{
         this.generateMaze = this.generateMaze.bind(this);
         this.animate = this.animate.bind(this);
         this.AlgorithmTypes = Object.freeze({
-            Dijkstra: {Dijkstra},
-            Astar: {Astar},
-            BFS: {BFS},
+            Dijkstra,
+            Astar,
+            BFS,
         })
     }
 
     componentDidMount(){
         this.setState({algorithm: this.AlgorithmTypes.Dijkstra, drawMode: 1});
+        //Get the window dimensions
+        let width = window.innerWidth;
+        let height = window.innerWidth;
+        //14 px is the width and height of a GridItem component's rendered div
+        let colCount = Math.floor(width / 14);
+        let rowCount = Math.floor(width / 14);
+        this.setState({gridColCount: colCount, gridRowCount: rowCount});
         this.initGrid();
     }
 
@@ -200,8 +207,6 @@ class PathfindingLayout extends React.Component{
             this.setState({gridState: oldGrid})
         }
         this.setState({gridState: oldGrid, isVisualized: true, isAnimated: false})
-
-
     }
 
     //Recursive maze generation
@@ -222,7 +227,13 @@ class PathfindingLayout extends React.Component{
             for(var y = 0; y < maze.visitedNodes[x].length; y++)
             {
                 if(!this.state.isAnimating)
+                {
+                    this.setState({isVisualized: true})
+                    console.log(this.state.isVisualized)
+                    console.log("Cancelled")
+                    await sleep(10);
                     return
+                }
                 //If node is false, it's an obstacle
                 if(maze.visitedNodes[x][y] == false)
                 {
@@ -279,7 +290,7 @@ class PathfindingLayout extends React.Component{
 
     gridWasClicked = (gridItem) => {
         //Check if the grid in in animated state
-        if(this.state.isVisualized || this.state.isAnimating)
+        if(this.state.isAnimating)
         {
             this.cancelAnimation();
         }
