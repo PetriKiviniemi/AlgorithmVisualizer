@@ -47,13 +47,6 @@ class PathfindingLayout extends React.Component{
 
     componentDidMount(){
         this.setState({algorithm: this.AlgorithmTypes.Dijkstra, drawMode: 1});
-        //Get the window dimensions
-        let width = window.innerWidth;
-        let height = window.innerHeight;
-        //14 px is the width and height of a GridItem component's rendered div
-        let colCount = Math.floor((width - 16) / 26);
-        let rowCount = Math.floor((height - 16) / 26);
-        this.setState({gridColCount: colCount, gridRowCount: rowCount});
         this.initGrid();
     }
 
@@ -389,11 +382,20 @@ class PathfindingLayout extends React.Component{
     initGrid()
     {
         //By calculating window.innerWidth/Heigth we could divide it by width/heigth of a GridItem and get the count to fill out the container
+        //Get the window dimensions
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        //14 px is the width and height of a GridItem component's rendered div
+        let colCount = Math.floor((width - 16) / 26);
+        let rowCount = Math.floor((height - 16) / 26);
+        //Store these just in a state just in case we'd want to resize the grid dynamically in the future
+        this.setState({gridColCount: colCount, gridRowCount: rowCount});
+
         let counter = 0;
-        for(let row = 0; row < this.state.gridRowCount; row++)
+        for(let row = 0; row < rowCount; row++)
         {
             let tmpRow = [];
-            for(let col = 0; col < this.state.gridColCount; col++)
+            for(let col = 0; col < colCount; col++)
             {
                 //Create node object array which represents the grid's state (Used for data processing) and GridItem array which is used to render the grid
                 let node = new Node(col, row, 0);
