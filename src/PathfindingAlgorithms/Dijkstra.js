@@ -63,5 +63,6 @@ export default function Dijkstra(Adj, start, goal)
             
     }
     
-    return [toBeVisited, shortestPath]
+    //If path was not found, return 0
+    return 0;
 }

@@ -64,5 +64,6 @@ export default function Astar(Adj, start, goal)
         visitedNodes.push(minNode.toString())
     }
 
-    return;
+    //If path was not found, return 0
+    return 0;
 }

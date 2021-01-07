@@ -125,10 +125,16 @@ class PathfindingLayout extends React.Component{
             {
                 case this.AlgorithmTypes.Dijkstra:
                     var dijkstra = Dijkstra(this.state.Graph.adjacencyList, start, goal);
+                    //If path was not found
+                    if(dijkstra == 0)
+                        break;
                     this.animate(dijkstra[0], dijkstra[1])
                     break;
                 case this.AlgorithmTypes.Astar:
                     var astar = Astar(this.state.Graph.adjacencyList, start, goal)
+                    //If path was not found
+                    if(astar == 0)
+                        break;
                     this.animate(astar[0], astar[1])
                     break;
                 default:
