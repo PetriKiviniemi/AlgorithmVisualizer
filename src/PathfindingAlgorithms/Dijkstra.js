@@ -1,7 +1,7 @@
-import {PriorityQueue} from './PriorityQueue'
+import PriorityQueue from './PriorityQueue'
 import {compareNodes} from './Utility'
 
-export function Dijkstra(Adj, start, goal)
+export default function Dijkstra(Adj, start, goal)
 {
     if(!start)
         console.log("start was not defined")
@@ -14,7 +14,7 @@ export function Dijkstra(Adj, start, goal)
     var dist = []
     var parent = []
 
-    for(var node in Adj)
+    for(let node in Adj)
     {
         dist[node] = Infinity
         parent[node] = undefined
@@ -22,7 +22,7 @@ export function Dijkstra(Adj, start, goal)
 
     dist[start] = 0;
     
-    for(var node in Adj)
+    for(let node in Adj)
     {
         prioQ.queue_item(node, dist[node])
     }
@@ -36,7 +36,7 @@ export function Dijkstra(Adj, start, goal)
         {
             console.log("Goal reached")
             //Backtrack and return the shortest path
-            while(minNode != undefined && !compareNodes(minNode, start))
+            while(minNode !== undefined && !compareNodes(minNode, start))
             {
                 shortestPath.push(minNode)
                 minNode = parent[minNode]
@@ -63,5 +63,5 @@ export function Dijkstra(Adj, start, goal)
             
     }
     
-    return toBeVisited, shortestPath
+    return [toBeVisited, shortestPath]
 }

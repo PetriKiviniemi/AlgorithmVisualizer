@@ -1,5 +1,4 @@
-import { isValidElement } from 'react';
-import {PriorityQueue} from './PriorityQueue'
+import PriorityQueue from './PriorityQueue'
 import {compareNodes, getIndex} from './Utility'
 
 function calcHeurestic(start, goal)
@@ -11,7 +10,7 @@ function calcHeurestic(start, goal)
     return (10 * (dx + dy) + (14 - 2 * 10) * Math.min(dx, dy))
 }
 
-export function Astar(Adj, start, goal)
+export default function Astar(Adj, start, goal)
 {
     var openSet = new PriorityQueue();
     var gScore = {}        //g score value for every node in graph
@@ -37,7 +36,7 @@ export function Astar(Adj, start, goal)
         {
             console.log("Goal reached")
             //Backtrack and return the shortest path
-            while(minNode != undefined && !compareNodes(minNode, start))
+            while(minNode !== undefined && !compareNodes(minNode, start))
             {
                 shortestPath.push(minNode)
                 minNode = parent[minNode]

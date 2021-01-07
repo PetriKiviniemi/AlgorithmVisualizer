@@ -1,6 +1,5 @@
 import React from 'react';
 import './Grid.scss'
-import Node from '../PathfindingAlgorithms/Node'
 
 //Just an object thats state is controlled by the grid
 //Used for animation and visualization only
@@ -17,7 +16,6 @@ class GridItem extends React.Component
             showWeight: this.props.showWeight,      //This is a boolean for showing weights, has currently no use
             weight: this.props.weight               //The actual weight value of the node after running desired algorithm
         };
-        this.updateNode = this.updateNode.bind(this)
     }
 
     componentDidMount()
@@ -28,38 +26,10 @@ class GridItem extends React.Component
 
     componentDidUpdate(prevProps)
     {
-        if(this.props.showWeight != prevProps.showWeight)
+        if(this.props.showWeight !== prevProps.showWeight)
             this.setState({showWeight: this.props.showWeight})
-        if(this.props.styleName != prevProps.styleName)
+        if(this.props.styleName !== prevProps.styleName)
             this.setState({styleName: this.props.styleName})
-    }
-
-    componentWillUnmount()
-    {
-        //this.updateNode causing a memory leak since the notification method is still being ran ? 
-        //TODO:: How to change style of each grid-item component from parent without lifting state up?
-        //Cannot lift state up to parent since there are so many grid-item components that need changing
-    }
-
-
-    updateNode(node)
-    {
-        this.setState({node: node});
-        switch(node.nodeType)
-        {
-            case 1:
-                this.setState({styleName: 'grid-item-start'});
-                break;
-            case 2:
-                this.setState({styleName: 'grid-item-end'});
-                break;
-            case 3:
-                this.setState({styleName: 'grid-item-obstacle'});
-                break;
-            default:
-                this.setState({styleName: this.props.styleName});
-                break;
-        }
     }
 
     //Handle cell hover over if mouse buttons are being pressed down, send notification of clicked cell to parent, where the input is being handled
@@ -73,7 +43,7 @@ class GridItem extends React.Component
             }
         } 
         //If the mouse buttons are being held down
-        if(e.buttons == 1 || e.buttons == 3)
+        if(e.buttons === 1 || e.buttons === 3)
         {
             
             this.props.gridWasClicked(this);

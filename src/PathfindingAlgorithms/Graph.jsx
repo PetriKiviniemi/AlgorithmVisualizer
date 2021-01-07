@@ -1,7 +1,6 @@
-import {Node} from './Node'
 import {getIndex} from './Utility'
 
-export class Graph{
+export default class Graph{
     
     constructor(graph)
     {
@@ -28,7 +27,7 @@ export class Graph{
         //Check if the newly changed node was obstacle, if it was
         //Remove the edges from this node to anywhere else
         //We could also check if the node used to be an obstacle, then we would have no operations to perform
-        if(newNode.nodeType == 3)
+        if(newNode.nodeType === 3)
         {
             for(var node in this.adjacencyList[newNode.gridIndex])
             {
@@ -38,25 +37,25 @@ export class Graph{
             
             //Check diagonials if they're obstacles, if they're, remove edges between the non-obstacle nodes from x & y axis
             var [x,y] = newNode.gridIndex
-            //x max = this.graph.length, x == row
+            //x max = this.graph.length, x === row
             //Check if col and row is out of bounds aswell
             //Top right
-            if(x+1 < this.graph[0].length && y-1 > 0 && this.graph[y-1][x+1][1].nodeType == 3)
+            if(x+1 < this.graph[0].length && y-1 > 0 && this.graph[y-1][x+1][1].nodeType === 3)
             {
                 this.removeEdge([x,y-1], [x+1, y])
             }
             //Bottom right
-            if(x+1 < this.graph[0].length && y+1 < this.graph.length && this.graph[y+1][x+1][1].nodeType == 3)
+            if(x+1 < this.graph[0].length && y+1 < this.graph.length && this.graph[y+1][x+1][1].nodeType === 3)
             {
                 this.removeEdge([x+1,y], [x, y+1])
             }
             //Bottom left
-            if(x-1 > 0 && y+1 < this.graph.length && this.graph[y+1][x-1][1].nodeType == 3)
+            if(x-1 > 0 && y+1 < this.graph.length && this.graph[y+1][x-1][1].nodeType === 3)
             {
                 this.removeEdge([x-1,y], [x, y+1])
             }
             //Top left
-            if(x-1 > 0 && y-1 > 0 && this.graph[y-1][x-1][1].nodeType == 3)
+            if(x-1 > 0 && y-1 > 0 && this.graph[y-1][x-1][1].nodeType === 3)
             {
                 this.removeEdge([x,y-1], [x-1, y])
             }
@@ -66,16 +65,16 @@ export class Graph{
             //delete this.adjacencyList[newNode.gridIndex]
             
             //TODO:: WE COULD DO THIS TO SAVE MEMORY, BUT WE WOULD NEED TO CHANGE generateEdges() METHOD.
-            //E.g currently we check if this.graph[y+1][x+1].nodeType != 3, but when graph changes,
+            //E.g currently we check if this.graph[y+1][x+1].nodeType !=== 3, but when graph changes,
             //that index won't be the the diagonial neighbour on the grid anymore, since the node is deleted
             
         }
         //Check the other way around, if node used to be obstacle, add new neighbours to the node
-        else if(newNode.nodeType != 3)
+        else if(newNode.nodeType !== 3)
         {
             //Add the node to the graph
             //Check if the node used to be an obstacle
-            if(Object.entries(this.adjacencyList[newNode.gridIndex]).length == 0)
+            if(Object.entries(this.adjacencyList[newNode.gridIndex]).length === 0)
             {
                 this.adjacencyList[newNode.gridIndex] = {}
                 this.generateNodeNeighbours(newNode.gridIndex.toString())
@@ -85,7 +84,7 @@ export class Graph{
 
     calcMovementCost(node1, node2)
     {
-        if(getIndex(node1)[0] == getIndex(node2)[0] || getIndex(node1)[1] == getIndex(node2)[1])
+        if(getIndex(node1)[0] === getIndex(node2)[0] || getIndex(node1)[1] === getIndex(node2)[1])
             return 10
         else
             return 14
@@ -113,12 +112,12 @@ export class Graph{
         //Check if there's already edge between nodes
         for(var node in this.adjacencyList[node1])
         {
-            if(node == node2)
+            if(node === node2)
                 return
         }
         let oldNeighbours;
         
-        if(this.adjacencyList[node1] != undefined)
+        if(this.adjacencyList[node1] !== undefined)
         {
             //Get a dict of neighbours the node currently has
             oldNeighbours = this.adjacencyList[node1]
@@ -129,7 +128,7 @@ export class Graph{
         }
 
 
-        if(this.adjacencyList[node2] != undefined)
+        if(this.adjacencyList[node2] !== undefined)
         {
             //Push node1 to node2's neighbours aswell
             oldNeighbours = this.adjacencyList[node2]
@@ -165,48 +164,48 @@ export class Graph{
         var node2 = [0,0]
         //If node is an obstacle, skip it
         //TODO:: Consider just removing these from the graph ?
-        if(this.graph[y][x][1].nodeType == 3)
+        if(this.graph[y][x][1].nodeType === 3)
             return
         //this.graph has reversed x && y
         //Origin of the graph is also in top left corner instead of bottom left corner which is the usual (TODO:: Change the point of origin?)
         //Check edge cases and if the node is not obstacle for x && y axis
-        if(x-1 >= 0 && this.graph[y][x-1][1].nodeType != 3)
+        if(x-1 >= 0 && this.graph[y][x-1][1].nodeType !== 3)
         {
             node2 = [x-1, y];
             this.addEdge([node1, node2])
         }            
-        if(x+1 < this.graph[0].length && this.graph[y][x+1][1].nodeType != 3)
+        if(x+1 < this.graph[0].length && this.graph[y][x+1][1].nodeType !== 3)
         {
             node2 = [x+1, y]
             this.addEdge([node1, node2])
         }
-        if(y-1 >= 0 && this.graph[y-1][x][1].nodeType != 3)
+        if(y-1 >= 0 && this.graph[y-1][x][1].nodeType !== 3)
         {
             node2 = [x, y-1]
             this.addEdge([node1, node2])
         }
-        if(y+1 < this.graph.length && this.graph[y+1][x][1].nodeType != 3)
+        if(y+1 < this.graph.length && this.graph[y+1][x][1].nodeType !== 3)
         {
             node2 = [x, y+1]
             this.addEdge([node1, node2])
         }
         //Diagonials
-        if(x-1 >= 0 && y+1 < this.graph.length && this.graph[y+1][x-1][1].nodeType != 3)
+        if(x-1 >= 0 && y+1 < this.graph.length && this.graph[y+1][x-1][1].nodeType !== 3)
         {
             node2 = [x-1, y+1]
             this.addEdge([node1, node2])
         }
-        if(x-1 >= 0 && y-1 >= 0 && this.graph[y-1][x-1][1].nodeType != 3)
+        if(x-1 >= 0 && y-1 >= 0 && this.graph[y-1][x-1][1].nodeType !== 3)
         {
             node2 = [x-1, y-1]
             this.addEdge([node1, node2])
         }
-        if(x+1 < this.graph[0].length && y-1 >= 0 && this.graph[y-1][x+1][1].nodeType != 3)
+        if(x+1 < this.graph[0].length && y-1 >= 0 && this.graph[y-1][x+1][1].nodeType !== 3)
         {
             node2 = [x+1, y-1]
             this.addEdge([node1, node2])
         }
-        if(x+1 < this.graph[0].length && y+1 < this.graph.length && this.graph[y+1][x+1][1].nodeType != 3)
+        if(x+1 < this.graph[0].length && y+1 < this.graph.length && this.graph[y+1][x+1][1].nodeType !== 3)
         {
             node2 = [x+1, y+1]
             this.addEdge([node1, node2])
@@ -223,5 +222,3 @@ export class Graph{
     }
 
 }
-
-export default Graph;

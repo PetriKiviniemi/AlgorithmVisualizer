@@ -1,6 +1,6 @@
 import {getIndex} from './Utility'
 
-export class Maze
+export default class Maze
 {
     constructor(AdjList)
     {
@@ -44,7 +44,7 @@ export class Maze
                 wallList.splice(i, 1);
             }
             //Delete diagonial neighbours for the sake of cleaner maze
-            if(node[0] != nodeIdx[0] && node[1] != nodeIdx[1])
+            if(node[0] !== nodeIdx[0] && node[1] !== nodeIdx[1])
             {
                 wallList.splice(i, 1);
             }
@@ -68,7 +68,7 @@ export class Maze
                     visitedCounter += 1;
                 }
                 //Delete diagonial neighbours for the sake of cleaner maze
-                if(wall[0] != nodeIdx[0] && wall[1] != nodeIdx[1])
+                if(wall[0] !== nodeIdx[0] && wall[1] !== nodeIdx[1])
                 {
                     wallNeighbours.splice(i, 1);
                 }

@@ -1,4 +1,4 @@
-export class Node{
+export default class Node{
     constructor(x,y, weight){
         this.gridIndex = [x,y];
         this.nodeType= 0;
@@ -43,5 +43,3 @@ export class Node{
         return this.neighbours;
     }
 }
-
-export default Node;

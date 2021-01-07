@@ -1,10 +1,9 @@
 import React from 'react';
 import GridItem from './GridItem'
-import {Graph} from '../PathfindingAlgorithms/Graph'
-import {Dijkstra} from '../PathfindingAlgorithms/Dijkstra'
-import {Astar} from '../PathfindingAlgorithms/Astar'
-import {BFS} from '../PathfindingAlgorithms/BFS'
-import {Maze} from '../PathfindingAlgorithms/Maze'
+import Graph from '../PathfindingAlgorithms/Graph'
+import Dijkstra from '../PathfindingAlgorithms/Dijkstra'
+import Astar from '../PathfindingAlgorithms/Astar'
+import Maze from '../PathfindingAlgorithms/Maze'
 import Node from '../PathfindingAlgorithms/Node'
 import {compareNodes, getIndex, sleep} from '../PathfindingAlgorithms/Utility'
 import './Grid.scss';
@@ -43,7 +42,6 @@ class PathfindingLayout extends React.Component{
         this.AlgorithmTypes = Object.freeze({
             Dijkstra,
             Astar,
-            BFS,
         })
     }
 
@@ -51,10 +49,10 @@ class PathfindingLayout extends React.Component{
         this.setState({algorithm: this.AlgorithmTypes.Dijkstra, drawMode: 1});
         //Get the window dimensions
         let width = window.innerWidth;
-        let height = window.innerWidth;
+        let height = window.innerHeight;
         //14 px is the width and height of a GridItem component's rendered div
-        let colCount = Math.floor(width / 14);
-        let rowCount = Math.floor(width / 14);
+        let colCount = Math.floor((width - 16) / 26);
+        let rowCount = Math.floor((height - 16) / 26);
         this.setState({gridColCount: colCount, gridRowCount: rowCount});
         this.initGrid();
     }
@@ -139,9 +137,6 @@ class PathfindingLayout extends React.Component{
                 case this.AlgorithmTypes.Astar:
                     var astar = Astar(this.state.Graph.adjacencyList, start, goal)
                     this.animate(astar[0], astar[1])
-                    break;
-                case this.AlgorithmTypes.BFS:
-                    var bfs = BFS(this.state.Graph.adjacencyList)
                     break;
                 default:
                     break;
@@ -235,7 +230,7 @@ class PathfindingLayout extends React.Component{
                     return
                 }
                 //If node is false, it's an obstacle
-                if(maze.visitedNodes[x][y] == false)
+                if(maze.visitedNodes[x][y] === false)
                 {
                     let newGrid = this.state.gridState
                     //Update the gridItem and the node in gridState
