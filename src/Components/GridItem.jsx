@@ -59,9 +59,15 @@ class GridItem extends React.Component
 
     render(){
         //Variables that change depending on the passed props
+
+        //Just a temp style so we won't get runtime errors, hacky fix
+        let tmpStyle = {
+            'border-width': '1px'
+        };
+
         let isConstructed = this.state.node ? true : false;
-        let styleName = this.props.visited ? this.props.styleName : this.state.styleName
-        let styleColor = this.props.visited ? this.props.styleObj : undefined
+        let styleName = this.props.styleName ? this.props.styleName : 'grid-item'
+        let styleColor = this.props.visited ? this.props.styleObj : tmpStyle
         //let weightValue = this.props.showWeight ? this.state.weight : ""      //This can be used to display weights of the nodes
         if(isConstructed)
         {

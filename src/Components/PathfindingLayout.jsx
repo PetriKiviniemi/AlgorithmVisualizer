@@ -172,7 +172,7 @@ class PathfindingLayout extends React.Component{
             c[2] -= weight/3*2;
 
             const _styleObj = {
-                'background-color': 'rgb('+c[0]+','+c[1]+','+c[2]+')'
+                'backgroundColor': 'rgb('+c[0]+','+c[1]+','+c[2]+')'
             };
 
             //Clone/Duplicate the gridItem component with new properties and overwrite the old one
@@ -245,9 +245,6 @@ class PathfindingLayout extends React.Component{
                 break;
             case "Astar":
                 this.setState({algorithm: this.AlgorithmTypes.Astar})
-                break;
-            case "BFS":
-                this.setState({algorithm: this.AlgorithmTypes.BFS})
                 break;
             default:
                 this.setState({algorithm: this.AlgorithmTypes.Dijkstra})
@@ -425,7 +422,7 @@ class PathfindingLayout extends React.Component{
                     </button>
                     <div className="dropdown-container">
                         <label className="dropdown-description">Algorithm mode</label>
-                        <select name="algorithmMode" id="algorithm_mode" className="selector-dropdown" onChange={this.handleAlgorithmModeChange}>
+                        <select className="selector-dropdown" onChange={this.handleAlgorithmModeChange}>
                             <option value="Dijkstra">Dijkstra</option>
                             <option value="Astar">A*</option>
                         </select>
@@ -441,7 +438,7 @@ class PathfindingLayout extends React.Component{
                     </div>
                     <div className="dropdown-container">
                         <label className="dropdown-description">Drawing mode</label>
-                        <select name="drawingMode" id="drawing_mode" className="selector-dropdown" onChange={this.handleDrawModeChange}>
+                        <select className="selector-dropdown" onChange={this.handleDrawModeChange}>
                             <option value="start">Start location</option>
                             <option value="end">End location</option>
                             <option value="obstacle">Obstacle</option>

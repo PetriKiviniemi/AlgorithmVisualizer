@@ -15,7 +15,7 @@ class Layout extends React.Component
     render(){
         return(
             <div className="layout-wrapper">
-                {this.state.currentLayout}
+                <PathfindingLayout/>
             </div>
         );
     }
