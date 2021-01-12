@@ -14,7 +14,8 @@ class GridItem extends React.Component
             styleName: this.props.styleName,        //Css style name what is changed with selecte drawing mode
             styleObj: this.props.styleObj,          //Inline style object that's passed as a prop from parent, used to calculate the RGB color of the node from the weight value
             showWeight: this.props.showWeight,      //This is a boolean for showing weights, has currently no use
-            weight: this.props.weight               //The actual weight value of the node after running desired algorithm
+            weight: this.props.weight,               //The actual weight value of the node after running desired algorithm
+            isDragging: false,
         };
     }
 
@@ -45,7 +46,6 @@ class GridItem extends React.Component
         //If the mouse buttons are being held down
         if(e.buttons === 1 || e.buttons === 3)
         {
-            
             this.props.gridWasClicked(this);
             unFocus();
         }
@@ -62,7 +62,7 @@ class GridItem extends React.Component
 
         //Just a temp style so we won't get runtime errors, hacky fix
         let tmpStyle = {
-            'border-width': '1px'
+            'borderWidth': '1px'
         };
 
         let isConstructed = this.state.node ? true : false;
@@ -72,7 +72,7 @@ class GridItem extends React.Component
         if(isConstructed)
         {
             return(
-                <div className={styleName} style={styleColor} onClick={this.cellWasClicked} onMouseOver={this.cellWasHovered}>    
+                <div className={styleName} style={styleColor} onClick={this.cellWasClicked} onMouseMove={this.cellWasHovered}>    
                 </div> 
             ); 
         }

@@ -409,7 +409,7 @@ class PathfindingLayout extends React.Component{
             }
             //Add the nodes in batches to 2d array for rendering purposes (Chrome dev tools crashes if you render too many objects at once)
             this.pushElemsToGrid(tmpRow);
-            await sleep(5);
+            await sleep(1);
         }
         this.setState({Graph: new Graph(this.state.gridState)})
     }
