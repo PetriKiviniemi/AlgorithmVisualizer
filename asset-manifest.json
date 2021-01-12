@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/AlgorithmVisualizer/static/css/main.c96b32c1.chunk.css",
-    "main.js": "/AlgorithmVisualizer/static/js/main.2285bc90.chunk.js",
-    "main.js.map": "/AlgorithmVisualizer/static/js/main.2285bc90.chunk.js.map",
+    "main.css": "/AlgorithmVisualizer/static/css/main.85074821.chunk.css",
+    "main.js": "/AlgorithmVisualizer/static/js/main.27a35bb9.chunk.js",
+    "main.js.map": "/AlgorithmVisualizer/static/js/main.27a35bb9.chunk.js.map",
     "runtime-main.js": "/AlgorithmVisualizer/static/js/runtime-main.890db674.js",
     "runtime-main.js.map": "/AlgorithmVisualizer/static/js/runtime-main.890db674.js.map",
     "static/js/2.88cfa503.chunk.js": "/AlgorithmVisualizer/static/js/2.88cfa503.chunk.js",
     "static/js/2.88cfa503.chunk.js.map": "/AlgorithmVisualizer/static/js/2.88cfa503.chunk.js.map",
     "index.html": "/AlgorithmVisualizer/index.html",
-    "static/css/main.c96b32c1.chunk.css.map": "/AlgorithmVisualizer/static/css/main.c96b32c1.chunk.css.map",
+    "static/css/main.85074821.chunk.css.map": "/AlgorithmVisualizer/static/css/main.85074821.chunk.css.map",
     "static/js/2.88cfa503.chunk.js.LICENSE.txt": "/AlgorithmVisualizer/static/js/2.88cfa503.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.890db674.js",
     "static/js/2.88cfa503.chunk.js",
-    "static/css/main.c96b32c1.chunk.css",
-    "static/js/main.2285bc90.chunk.js"
+    "static/css/main.85074821.chunk.css",
+    "static/js/main.27a35bb9.chunk.js"
   ]
 }
